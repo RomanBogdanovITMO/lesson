@@ -1,6 +1,6 @@
-package Lesson2.Task11;
+package Lesson2.Task01;
 
-public class Task11 {
+public class Task01 {
     public static void main(String[] args) {
         int [] arry = new int[3];
         arry[0] = 3;
