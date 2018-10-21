@@ -1,6 +1,6 @@
-package Lesson2.Task05;
+package Lesson2.Task07;
 
-public class Task05 {
+public class Task07 {
     public static void main(String[] args) {
         int b = 0;
         for(int i = 1; i <=24; i ++){
@@ -10,6 +10,6 @@ public class Task05 {
                 }
             }
         }
-        System.out.println("Соличество комбинаций: " + b);
+        System.out.println("Количество комбинаций: " + b);
     }
 }
