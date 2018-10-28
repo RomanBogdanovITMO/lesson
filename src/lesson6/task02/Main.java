@@ -15,12 +15,8 @@ public class Main {
      library.add(book1);
      library.add(book2);
      library.add(book3);
-
-     library.remove(book1);
      library.remove(book2);
-     library.remove(book3);
-     library.remove(book3);
-
-
+    // library.remove(book3);// вызвает исключение NullPointerException
+     library.showLibrary();
     }
 }
