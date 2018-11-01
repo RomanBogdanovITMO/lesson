@@ -7,6 +7,6 @@ public class Main {
         Apples apples1 = new Apples(6,"read",4);
         tree.addApples(apples1);
         garden.prosedura(tree);
-        System.out.println(apples1.frashCountApple);
+        System.out.println(apples1.frashCountApple);// должено выводить - 1(количество испортившихся яблок)ничего не выводит.
     }
 }
