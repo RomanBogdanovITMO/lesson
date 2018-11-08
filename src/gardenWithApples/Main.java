@@ -1,12 +1,22 @@
 package gardenWithApples;
 
+
+
 public class Main {
     public static void main(String[] args) {
-        Garden garden = new Garden("сад яблок");
-        Tree tree = new Tree("Дерево");
-        Apples apples1 = new Apples(6,"read",4);
+        Apples apples = new Apples(5,"wite",1);
+        Apples apples1 = new Apples(1,"1",1);
+        Apples apples2 = new Apples(2,"1",3);
+
+        Tree tree = new Tree("rte");
+        tree.addApples(apples);
         tree.addApples(apples1);
+        tree.addApples(apples2);
+
+        Garden garden = new Garden("asd");
         garden.prosedura(tree);
-        System.out.println(apples1.frashCountApple);// должено выводить - 1(количество испортившихся яблок)ничего не выводит.
+        garden.prosedura(tree);
+
+
     }
 }

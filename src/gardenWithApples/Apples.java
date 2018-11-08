@@ -40,15 +40,17 @@ public class Apples {
 
     public int frashApples(int oldApple){
         if(oldApple > 5){
-            frashCountApple ++;
+            frashCountApple++;
         }
         return frashCountApple;
     }
     public int fallApples(int sizeApple){
-         fallCountApples = 0;
-        if(sizeApple > 2){
+
+        if(sizeApple > 3){
             fallCountApples++;
+
         }
         return fallCountApples;
     }
+
 }
