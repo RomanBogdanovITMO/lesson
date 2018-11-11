@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tree {
-     int countApples = 0;
+
     List<Apples>listApples = new ArrayList<>();
     private  String name;
 
@@ -24,7 +24,6 @@ public class Tree {
     }
     public void addApples(Apples apples){
         listApples.add(apples);
-        countApples++;
     }
 
 

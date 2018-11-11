@@ -19,7 +19,9 @@ public class Apples {
     }
 
     public void setOldApple(int oldApple) {
-        this.oldApple = oldApple;
+        if(oldApple > 0) {
+            this.oldApple = oldApple;
+        }
     }
 
     public String getColorApple() {
@@ -35,7 +37,9 @@ public class Apples {
     }
 
     public void setSizeApple(int sizeApple) {
-        this.sizeApple = sizeApple;
+        if(sizeApple > 0) {
+            this.sizeApple = sizeApple;
+        }
     }
 
     public int frashApples(int oldApple){
@@ -46,11 +50,22 @@ public class Apples {
     }
     public int fallApples(int sizeApple){
 
-        if(sizeApple > 3){
+        if(sizeApple >= 4){
             fallCountApples++;
 
         }
         return fallCountApples;
     }
 
+    @Override
+    public String toString() {
+        return "Apples{" +
+                "oldApple=" + oldApple +
+                ", colorApple='" + colorApple + '\'' +
+                ", sizeApple=" + sizeApple +
+                '}';
+    }
+    public void getCountAppls(){
+        System.out.println(fallCountApples);
+    }
 }
