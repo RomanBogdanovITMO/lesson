@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class MetodsExternalizable implements Externalizable {
     private String user;
     private String comand;
+    public long ping;
+    public MetodsExternalizable(){
+
+    }
 
     public MetodsExternalizable(String user, String comand) {
         this.user = user;
@@ -34,17 +38,23 @@ public class MetodsExternalizable implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(user);
-        out.writeObject(getTime());
+        out.writeUTF(user);
+        out.writeUTF(comand);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        user = (String)in.readObject();
-        comand = (String)in.readObject();
+        this.user=in.readUTF();
+        this.comand = in.readUTF();
     }
-    private Date getTime(){
+    public Date getTime(){
         Date date = new Date();
         return date;
     }
+    public long getPing(PrintClientt printClientt){
+        this.ping = printClientt.ping;
+        return ping;
+    }
+
+
 }
