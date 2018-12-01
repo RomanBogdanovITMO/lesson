@@ -10,13 +10,11 @@ import java.util.Scanner;
 public class PrintClientt {
     private SocketAddress socketAddress;
     private Scanner scanner;
-    public long ping;
+    public Long ping;
     public PrintClientt(SocketAddress address, Scanner scanner) {
         this.socketAddress = address;
         this.scanner = scanner;
     }
-
-
     private void start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Entry your name");
@@ -27,9 +25,8 @@ public class PrintClientt {
         }
 
     }
-
     private void user(String users, String command) {
-        long start = System.nanoTime();
+        Long start = System.currentTimeMillis();
         MetodsExternalizable user = new MetodsExternalizable(users, command);
         try (Socket socket = new Socket()) {
             socket.connect(socketAddress);
@@ -39,7 +36,8 @@ public class PrintClientt {
             }
         } catch (Exception e) {
             System.out.println(e);
-            ping = System.nanoTime()-start;
+            Long finish = System.currentTimeMillis()-start;
+            user.setPing(finish);
         }
 
     }

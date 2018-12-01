@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class Server {
 private int port;
-public long ping;
 private HashSet<String>list = new HashSet<>();
+
     public Server(int port) {
         this.port = port;
     }
@@ -32,7 +30,7 @@ private HashSet<String>list = new HashSet<>();
         }else if(metodsExternalizable.getComand().equals("list_users")){
             System.out.println(list);
         }else if(metodsExternalizable.getComand().equals("getPing")){
-           // System.out.println(metodsExternalizable.getPing());
+            System.out.println(metodsExternalizable.getPing());
         }
     }
 
