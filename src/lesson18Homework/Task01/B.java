@@ -1,25 +1,24 @@
 package lesson18Homework.Task01;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class A implements Runnable{
+public class B implements Runnable {
     ReadFile readFile;
-    private Map<String, Integer> mapA;
+    private Map<String, Integer> mapB;
 
-    public A(ReadFile readFile, Map<String, Integer> mapA) {
+    public B(ReadFile readFile, Map<String, Integer> mapB) {
         this.readFile = readFile;
-        this.mapA = mapA;
+        this.mapB = mapB;
     }
 
-    public Map<String, Integer> getMapA() {
-        return mapA;
+    public Map<String, Integer> getMapB() {
+        return mapB;
     }
 
-    public void setMapA(Map<String, Integer> mapA) {
-        this.mapA = mapA;
+    public void setMapB(Map<String, Integer> mapB) {
+        this.mapB = mapB;
     }
 
     @Override
@@ -29,21 +28,20 @@ public class A implements Runnable{
             List<String> list = readFile.getListWords();
             int count = list.size()/2;
             int countVal=0;
-            for (int i = 0; i <count; i++){
+            for (int i = count; i <list.size(); i++){
                 countVal = 0;
                 for (int j = 0; j < count; j++){
                     if (list.get(i).equals(list.get(j))){
                         countVal++;
                     }
                 }
-                mapA.put(list.get(i),countVal);
+                mapB.put(list.get(i),countVal);
             }
-            for (Map.Entry entry: mapA.entrySet()){
-              //  System.out.println(entry.getKey() + " " + entry.getValue());
+            for (Map.Entry entry: mapB.entrySet()){
+                //System.out.println(entry.getKey() + " " + entry.getValue());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-
