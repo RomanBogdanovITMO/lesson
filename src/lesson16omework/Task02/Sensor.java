@@ -31,8 +31,12 @@ public class Sensor {
         list.remove(alarm);
     }
     public void newTemp(){
-        for(int i = 0; i <=100; i++){
+        for(int i = 0; i <=600; i++){
             temp++;
+            notifyAlarms(temp);
+        }
+        while (temp > 50){
+            temp--;
             notifyAlarms(temp);
         }
     }
