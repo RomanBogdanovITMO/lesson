@@ -2,26 +2,67 @@ package lesson20Homework.Task01;
 
 import java.util.Date;
 
-public class Transaction {
-    private Account scr;
-    private Account dst;
-    private String nameBanck;
-    private int amount;
+public class Transaction implements Runnable{
+    private final Account scr;
+    private final Account dst;
+    private Banck banck;
     private Date date;
+    private boolean transactioSucces;
+    private final double amount;
 
-    public Transaction(Account scr, Account dst, String nameBanck, int amount, Date date) {
+
+    public Transaction(Account scr, Account dst, Banck banck, double amount) {
         this.scr = scr;
         this.dst = dst;
-        this.nameBanck = nameBanck;
+        this.banck = banck;
+        this.transactioSucces = false;
         this.amount = amount;
         this.date =  new Date();
     }
-
+    private boolean accTransfer(){
+        if(scr.getMoney() < amount || scr.getMoney() <= 0 || (scr.getMoney() == dst.getMoney())
+                || amount <= 0){
+            return false;
+        }
+        scr.setMoney(scr.getMoney() - amount);
+        dst.setMoney(dst.getMoney() + amount);
+        return true;
+    }
     @Override
-    public String toString() {
-        return "Transaction{" + "scr=" + scr + ", dst=" + dst + ", nameBanck='" + nameBanck + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                '}';
+    public void run() {
+        boolean result;
+        if (scr.getId() > dst.getId()){
+            synchronized (scr) {
+                synchronized (dst) {
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    result = accTransfer();
+                    if (result) {
+                        System.out.println("Transaction success");
+                    } else {
+                        System.out.println("Transaction failed");
+                    }
+                }
+            }
+        }else if (dst.getId() > scr.getId()){
+            synchronized (dst) {
+                synchronized (scr) {
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    result = accTransfer();
+                    if (result) {
+                        System.out.println("Transaction success");
+                    } else {
+                        System.out.println("Transaction failed");
+                    }
+                }
+            }
+        }
     }
 }

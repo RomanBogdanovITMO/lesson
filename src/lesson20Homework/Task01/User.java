@@ -1,22 +1,19 @@
 package lesson20Homework.Task01;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
     private String name;
-    private AtomicInteger nextID = new AtomicInteger();
+    private static int nextID =0;
     private int id;
 
     public User(String name) {
         this.name = name;
-        this.id = nextID.getAndIncrement();
+        this.id = ++ nextID;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
-
-
 
     @Override
     public String toString() {

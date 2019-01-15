@@ -1,31 +1,39 @@
 package lesson20Homework.Task01;
 
-import java.util.Date;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Banck {
-    LinkedHashSet<Account> listClients;
-    private String name;
+    private List<Thread> threads = new ArrayList<>();
+    private List<Account> userAccounts = new ArrayList<>();
 
-    public Banck(String name) {
-        this.name = name;
+    public void transferMoney(Account scr, Account dst, double amount){
+        Transaction transaction = new Transaction(scr,dst,this,amount);
+        Thread thread = new Thread(transaction);
+        thread.start();
+        threads.add(thread);
     }
-
-    public void AddClient(Account account){
-        listClients = new LinkedHashSet<>();
-        listClients.add(account);
+    public List<Thread> getThreads(){
+        return threads;
     }
+    public void createAccount(Account account){
+        userAccounts.add(account);
+    }
+    public List<Account> getUserAccount(int userId) {
+        List<Account> list = new ArrayList<>();
 
-    public synchronized  void transferMoney(Account src, Account dst, int count, Date data){
-        if((listClients.contains(src) != false) &&(listClients.contains(dst) != false)){
-            System.out.println("Ошибка! Один из клиентов не существует");
-        }else if(count > src.getMoney()){
-            System.out.println("Недостаточно денег для перевода");
-        }else {
-            src.setMoney(src.getMoney() - count);
-            dst.setMoney(dst.getMoney() + count);
+        for(Account account : this.userAccounts) {
+            if(account.getUserId() == userId)
+                list.add(account);
         }
-        Transaction transaction = new Transaction(src,dst,name,count, data);
-        System.out.println(transaction.toString());
+        return list;
+    }
+
+    public Account getAccountId(int accounId) {
+        for (Account account: this.userAccounts) {
+            if(account.getId() == accounId)
+                return account;
+        }
+        return null;
     }
 }

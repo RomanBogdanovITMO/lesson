@@ -1,25 +1,41 @@
 package lesson20Homework.Task01;
 
-import java.util.Date;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        User user1 = new User("Roman");
-        User user2 = new User("Boba");
-        User user3 = new User("lala");
+        Banck banck = new Banck();
 
-        Account account = new Account(user1,5000);
-        Account account1 = new Account(user2,200);
-        Account account2 = new Account(user3,222);
+        User user1 = new User("Boba");
+        User user2 = new User("Alexs");
 
-        Banck banck = new Banck("Sberbanck");
-        banck.AddClient(account);
-        banck.AddClient(account1);
-        banck.AddClient(account2);
-        banck.transferMoney(account,account1,1000,new Date());
-        System.out.println("--------------------------------------------------");
-        banck.transferMoney(account1,account2,300,new Date());
-        System.out.println("__----------------------------------------_");
-        banck.transferMoney(account,account2,120,new Date());
+        banck.createAccount(new Account(user1.getId()));
+        banck.createAccount(new Account(user1.getId()));
+        banck.createAccount(new Account(user1.getId()));
+        banck.createAccount(new Account(user2.getId()));
+        banck.createAccount(new Account(user2.getId()));
+        banck.createAccount(new Account(user2.getId()));
+
+        banck.getAccountId(2).setMoney(100_000);
+        banck.getAccountId(1).setMoney(1000);
+        banck.getAccountId(3).setMoney(11000);
+
+        System.out.println(banck.getAccountId(2).toString());
+        System.out.println(banck.getAccountId(1).toString());
+        System.out.println(banck.getAccountId(3).toString());
+
+        banck.transferMoney(banck.getAccountId(3),banck.getAccountId(2),500);
+        banck.transferMoney(banck.getAccountId(3),banck.getAccountId(1),100);
+
+        for (Thread thread: banck.getThreads()){
+            try {
+                thread.join();
+            }catch (InterruptedException e){
+                System.out.println(e);
+            }
+        }
+        System.out.println(banck.getAccountId(2).toString());
+        System.out.println(banck.getAccountId(1).toString());
+        System.out.println(banck.getAccountId(2).toString());
     }
 }
